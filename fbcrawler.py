@@ -2,20 +2,21 @@
 import requests
 import json 
 import jieba
+import operator
 
-TOKEN = "EAACEdEose0cBABlRtCJvRponmiL9chwJhIWSFlDZAS27TbFZA4iZA2Qzxfo31fMIXlITIDhDG2oDQmp5Srdg8zA1xWZBitfZA02z4WGaAmEmypLEp7ZAlz8uqXuCIOZCXbiDBdL16smq5bXrwkUSvRrapYGjByeD3PHLkwQWZBFXQAZDZD"
+TOKEN = "EAACEdEose0cBAB1ZBqekistK6wcvZAa56VjCNk1MlNFC07zIk1rQWbrLBxlVlwK8panNaqJG78PpO9d74KVb1bhgynHq66iKMa5ZASknQnzHHplv6JMF9d6V5d0kU8zUAUfTB2Mh450x35BEb6egp83XqSEe19AKVNI4mMHQAZDZD"
 
-res = requests.get("https://graph.facebook.com/me/photos?limit=100&since=1420041600&access_token="+TOKEN)
+res = requests.get("https://graph.facebook.com/me/posts?limit=100&since=1251561600&access_token="+TOKEN)
 jd = json.loads(res.text)
 
-
+'''
 while "paging" in jd:
     for post in jd["data"]:
         print post
         print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     res = requests.get(jd["paging"]["next"]) #翻頁
     jd = json.loads(res.text)
-
+'''
     
 def hatelikes(jd=jd):
     
@@ -63,7 +64,12 @@ def hatelikes(jd=jd):
                 else :
                     dic_percentage[name] = 0
 
-    return dic_percentage 
+    return dic_percentage
+
+sorted_rank = sorted(hatelikes().items() , key = operator.itemgetter(1),reverse = True)
+
+for ele in sorted_rank:
+    print ele[0] , ele[1] ,'%'
 
 
 
