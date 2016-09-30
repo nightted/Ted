@@ -4,7 +4,7 @@ import json
 import jieba
 import operator
 
-TOKEN = "EAACEdEose0cBAB1ZBqekistK6wcvZAa56VjCNk1MlNFC07zIk1rQWbrLBxlVlwK8panNaqJG78PpO9d74KVb1bhgynHq66iKMa5ZASknQnzHHplv6JMF9d6V5d0kU8zUAUfTB2Mh450x35BEb6egp83XqSEe19AKVNI4mMHQAZDZD"
+TOKEN = ""
 
 res = requests.get("https://graph.facebook.com/me/posts?limit=100&since=1251561600&access_token="+TOKEN)
 jd = json.loads(res.text)
